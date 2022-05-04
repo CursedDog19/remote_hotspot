@@ -1,30 +1,16 @@
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-auto lo br0
+auto lo
 iface lo inet loopback
 
+# Wired Ethernet
 allow-hotplug eth0
-iface eth0 inet manual
-
-allow-hotplug wlan0
-iface wlan0 inet manual
-
-# Bridge setup
-
-# for dhcp address
-#iface br0 inet dhcp
-# bridge_ports eth0 wlan0
-
-# for static ip
-iface br0 inet static
-bridge_ports eth0 wlan0
-# adapt with your network settings
+iface eth0 inet static
 address 192.168.0.91
 netmask 255.255.255.0
-network 192.168.0.0
-broadcast 192.168.0.255
-gateway 192.168.0.1
-# dns-* options are implemented by the resolvconf package, if installed
-dns-nameservers 192.168.0.100
-dns-search localdomain
+dns-nameservers 8.8.8.8 1.1.1.1
+
+# Wireless adapter #1
+allow-hotplug wlan0
+iface wlan0 inet static
+address 192.168.0.1
+netmask 255.255.255.0
+dns-nameservers 8.8.8.8 1.1.1.1
